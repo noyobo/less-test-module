@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - name: Bump version
-        uses: qzb/standard-version@v1
+      - name: Bump Version
+        uses: qzb/standard-version-action@v1.0.5
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
