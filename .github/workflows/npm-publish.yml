@@ -6,6 +6,7 @@ name: release-please
 on:
   push:
     branches:
+      - main
       - master
 
 jobs:
@@ -23,12 +24,14 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Bump Version
         uses: qzb/standard-version-action@v1.0.5
+      - name: Npm publish
+        run: |
+          npm whoami
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GIT_TOKEN }}
+          github_token: ${{ github.token }}
           branch: ${{ github.ref }}
-      - name: Npm publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
