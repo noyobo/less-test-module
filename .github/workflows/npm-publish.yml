@@ -28,7 +28,7 @@ jobs:
         with:
           github_token: ${{ secrets.GIT_TOKEN }}
           branch: ${{ github.ref }}
-# - run: npm ci
-# - run: npm publish
-#   env:
-#     NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Npm publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
