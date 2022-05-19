@@ -37,5 +37,7 @@ jobs:
           branch: ${{ github.ref }}
       - name: cnpm sync
         run: |
-          npm install cnpm 
-          npx cnpm sync
+          export PKG=$(cat package.json | grep "name" | cut -d'"' -f 4)
+          echo "package name: $PKG"
+          curl -X PUT  https://registry-direct.npmmirror.com/$PKG/sync\?sync_upstream\=true
+          sleep 5
